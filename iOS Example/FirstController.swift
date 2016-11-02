@@ -22,6 +22,10 @@ class FirstController: UIViewController {
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     segue.destination.az_modalTransition = FashionTransition()
+    
+    let viewController = UIViewController()
+    viewController.az_modalTransition = FashionTransition()
+    self.present(viewController, animated: true, completion: nil)
   }
 }
 
