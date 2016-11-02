@@ -1,4 +1,9 @@
 # AZTransitions
+[![CocoaPods Compatible](https://img.shields.io/cocoapods/v/AZTransitions.svg)](https://img.shields.io/cocoapods/v/AZTransitions.svg)
+[![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![Platform](https://img.shields.io/cocoapods/p/AZTransitions.svg?style=flat)](http://cocoadocs.org/docsets/AZTransitions)
+[![Twitter](https://img.shields.io/badge/twitter-@ziminalex-blue.svg?style=flat)](http://twitter.com/ziminalex)
+![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)
 
 Make your modal transition with custom animation.
 AZTransitions helps you think about creativity, giving specific API methods.
