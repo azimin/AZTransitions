@@ -269,6 +269,6 @@ public extension UIViewController {
 
 private extension CGRect {
   var az_center: CGPoint {
-    return CGPoint(x: self.width / 2, y: self.height / 2)
+    return CGPoint(x: self.midX, y: self.midY)
   }
 }
