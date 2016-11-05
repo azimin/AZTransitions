@@ -10,6 +10,12 @@ import UIKit
 
 class SecondViewController: UIViewController {
   
+  @IBOutlet weak var closeButton: UIButton! {
+    didSet {
+      closeButton.underlineCurrentTitle()
+    }
+  }
+  
   @IBAction func closeButtonAction(_ sender: UIButton) {
     self.dismiss(animated: true, completion: nil)
   }

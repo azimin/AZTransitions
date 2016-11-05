@@ -55,10 +55,19 @@ open class CustomModalTransition: NSObject {
   
   public fileprivate(set) var transitionContext: UIViewControllerContextTransitioning!
   public fileprivate(set) var transitionContainerView: UIView!
+  public fileprivate(set) var isPresenting: Bool = false
+  public fileprivate(set) var isInteractive: Bool = false
+  
+  // MARK: - View Controllers
+  // You can choose any pair
+  
+  // Presented/preseting style view controllees
   public fileprivate(set) var presentedViewController: UIViewController!
   public fileprivate(set) var presentingViewController: UIViewController!
-  public fileprivate(set) var isDismissing: Bool = false
-  public fileprivate(set) var isInteractive: Bool = false
+  
+  // Apple style view controllers
+  public fileprivate(set) var fromViewController: UIViewController!
+  public fileprivate(set) var toViewController: UIViewController!
   
   public func viewControllerFor(type: TransitionViewControllerType) -> UIViewController {
     switch type {
@@ -152,20 +161,22 @@ open class CustomModalTransition: NSObject {
   }
   
   fileprivate func prepareTransitionParameters() {
-    if isDismissing {
-      transitionContainerView.insertSubview(presentingViewController.view, at: 0)
-      
-      self.initialTransform = presentedViewController.view.transform;
-      self.finalTransform = presentingViewController.view.transform;
-      
-      presentingViewController.view.frame = self.transitionContext.finalFrame(for: presentingViewController)
-    } else {
-      transitionContainerView.addSubview(presentingViewController.view)
+    if isPresenting {
+      transitionContainerView.addSubview(toViewController.view)
+      transitionContainerView.addSubview(fromViewController.view)
       
       self.initialTransform = presentingViewController.view.transform
       self.finalTransform = presentedViewController.view.transform
       
       presentingViewController.view.frame = self.transitionContext.initialFrame(for: presentingViewController)
+    } else {
+      transitionContainerView.addSubview(fromViewController.view)
+      transitionContainerView.addSubview(toViewController.view)
+      
+      self.initialTransform = presentedViewController.view.transform;
+      self.finalTransform = presentingViewController.view.transform;
+      
+      presentingViewController.view.frame = self.transitionContext.finalFrame(for: presentingViewController)
     }
   }
   
@@ -180,6 +191,8 @@ open class CustomModalTransition: NSObject {
 extension CustomModalTransition: UIViewControllerTransitioningDelegate {
   public func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
     
+    presented.modalPresentationCapturesStatusBarAppearance = true
+    
     // If subclass don't implementing dismissing protocol
     if !self.responds(to: #selector(CustomModalTransitionType.performTransition(interactive:))) {
       return nil
@@ -189,7 +202,7 @@ extension CustomModalTransition: UIViewControllerTransitioningDelegate {
     
     self.presentedViewController = presented
     self.presentingViewController = presenting
-    self.isDismissing = false
+    self.isPresenting = true
     
     return self
   }
@@ -207,7 +220,7 @@ extension CustomModalTransition: UIViewControllerTransitioningDelegate {
     
     self.presentedViewController = dismissed
     self.presentingViewController = dismissed.presentingViewController
-    self.isDismissing = true
+    self.isPresenting = false
     
     return self
   }
@@ -246,14 +259,17 @@ extension CustomModalTransition: UIViewControllerAnimatedTransitioning {
     self.transitionContainerView = transitionContext.containerView
     self.isInteractive = transitionContext.isInteractive
     
+    self.fromViewController = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from)
+    self.toViewController = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to)
+    
     prepareTransitionParameters()
     
     prepareForTransition(isInteractive: isInteractive)
     
-    if isDismissing {
-      (self as CustomModalTransitionType).performDismissingTransition?(interactive: isInteractive)
-    } else {
+    if isPresenting {
       (self as CustomModalTransitionType).performTransition?(interactive: isInteractive)
+    } else {
+      (self as CustomModalTransitionType).performDismissingTransition?(interactive: isInteractive)
     }
   }
 }
@@ -263,13 +279,13 @@ extension CustomModalTransition: UIViewControllerAnimatedTransitioning {
 private var associatedObjectHandle: UInt8 = 0
 
 public extension UIViewController {
-  public var az_modalTransition: CustomModalTransition? {
+  public var customModalTransition: CustomModalTransition? {
     get {
       return objc_getAssociatedObject(self, &associatedObjectHandle) as? CustomModalTransition
     }
     
     set {
-      self.az_modalTransition?.owningController = nil
+      self.customModalTransition?.owningController = nil
       
       self.transitioningDelegate = newValue
       
@@ -282,8 +298,8 @@ public extension UIViewController {
     }
   }
   
-  public func setCustomModalTransition(az_modalTransition: CustomModalTransition, inPresentationStyle: UIModalPresentationStyle) {
-    self.az_modalTransition = az_modalTransition
+  public func setCustomModalTransition(customModalTransition: CustomModalTransition, inPresentationStyle: UIModalPresentationStyle) {
+    self.customModalTransition = customModalTransition
     self.modalPresentationStyle = inPresentationStyle
   }
 }

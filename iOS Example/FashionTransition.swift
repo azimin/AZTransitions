@@ -23,18 +23,18 @@ final class FashionTransition: CustomModalTransition {
   }
   
   func performTransition(interactive: Bool) {
-    perfromAnimation(isDismissing: false)
+    perfromAnimation(isPresenting: true)
   }
   
   func performDismissingTransition(interactive: Bool) {
-    perfromAnimation(isDismissing: true)
+    perfromAnimation(isPresenting: false)
   }
   
-  private func perfromAnimation(isDismissing: Bool) {
+  private func perfromAnimation(isPresenting: Bool) {
     let halfDuration = duration / 2
     
-    let onScreenViewControllerType: TransitionViewControllerType = isDismissing ? .presented : .presenting
-    let shouldBeOnScreenViewControllerType: TransitionViewControllerType = isDismissing ? .presenting : .presented
+    let onScreenViewControllerType: TransitionViewControllerType = isPresenting ? .presenting : .presented
+    let shouldBeOnScreenViewControllerType: TransitionViewControllerType = isPresenting ? .presented : .presenting
     
     scale(viewControllerType: onScreenViewControllerType, toStyle: .original)
     scale(viewControllerType: shouldBeOnScreenViewControllerType, toStyle: .compact)

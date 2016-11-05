@@ -9,12 +9,24 @@
 import UIKit
 
 class FirstViewController: UIViewController {
-
+  
+  var isOverCurrentContextTransition = false
+  
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    segue.destination.az_modalTransition = FashionTransition()
-    
-    // Use line below if you need FirstViewController to stay on screen after transition
-    // segue.destination.setCustomModalTransition(az_modalTransition: FashionTransition(), inPresentationStyle: .overCurrentContext)
+    if isOverCurrentContextTransition {
+      segue.destination.setCustomModalTransition(customModalTransition: AlphaByStepTransition(), inPresentationStyle: .overCurrentContext)
+    } else {
+      segue.destination.customModalTransition = FashionTransition()
+    }
+  }
+  
+  @IBOutlet weak var showButton: UIButton! {
+    didSet {
+      showButton.underlineCurrentTitle()
+    }
+  }
+  
+  @IBAction func isOverTransitionSwiftAction(_ sender: UISwitch) {
+    isOverCurrentContextTransition = sender.isOn
   }
 }
-

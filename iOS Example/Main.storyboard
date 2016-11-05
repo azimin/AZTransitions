@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -21,14 +22,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="hna-ib-ier">
-                                <rect key="frame" x="128" y="275" width="119" height="117"/>
+                                <rect key="frame" x="101.5" y="270.5" width="172" height="126"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_logo" translatesAutoresizingMaskIntoConstraints="NO" id="G3t-tf-pAS">
-                                        <rect key="frame" x="39" y="0.0" width="41" height="75"/>
+                                        <rect key="frame" x="65.5" y="0.0" width="41" height="75"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5MH-24-ALW">
-                                        <rect key="frame" x="0.0" y="87" width="119" height="30"/>
-                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
+                                        <rect key="frame" x="0.0" y="87" width="172" height="39"/>
+                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="22"/>
                                         <state key="normal" title="Show another VC">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -38,13 +39,34 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" text="Use over current context and alpha transition" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vu0-s0-rAp">
+                                <rect key="frame" x="24" y="26" width="274" height="43"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="751" verticalHuggingPriority="750" horizontalCompressionResistancePriority="752" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="9aA-Fx-6Bj">
+                                <rect key="frame" x="310" y="32" width="51" height="31"/>
+                                <color key="onTintColor" red="0.039795673076923076" green="0.43460336538461536" blue="0.28944711538461537" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="isOverTransitionSwiftAction:" destination="BYZ-38-t0r" eventType="valueChanged" id="E3n-zl-7oM"/>
+                                </connections>
+                            </switch>
                         </subviews>
                         <color key="backgroundColor" red="0.45882352939999999" green="0.77647058820000003" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="Vu0-s0-rAp" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="8" id="37t-ap-LST"/>
                             <constraint firstItem="hna-ib-ier" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="6Ea-ef-VjJ"/>
+                            <constraint firstItem="9aA-Fx-6Bj" firstAttribute="leading" secondItem="Vu0-s0-rAp" secondAttribute="trailing" constant="12" id="OM4-LN-zBN"/>
                             <constraint firstItem="hna-ib-ier" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="UO3-Za-bvE"/>
+                            <constraint firstItem="9aA-Fx-6Bj" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="32" id="XUX-So-7jS"/>
+                            <constraint firstItem="9aA-Fx-6Bj" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="qCw-YC-fKJ"/>
+                            <constraint firstItem="Vu0-s0-rAp" firstAttribute="centerY" secondItem="9aA-Fx-6Bj" secondAttribute="centerY" id="w5Q-4m-Sbh"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="showButton" destination="5MH-24-ALW" id="Z34-wu-guT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -62,7 +84,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JpB-pM-ohr">
-                                <rect key="frame" x="167.5" y="318" width="39" height="30"/>
+                                <rect key="frame" x="159" y="313.5" width="56" height="39"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <state key="normal" title="Close">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -77,6 +100,9 @@
                             <constraint firstItem="JpB-pM-ohr" firstAttribute="centerX" secondItem="t1c-VX-UHH" secondAttribute="centerX" id="zfc-LT-YYV"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="closeButton" destination="JpB-pM-ohr" id="j9m-Uf-EO6"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pWQ-m2-niI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
