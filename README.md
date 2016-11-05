@@ -46,7 +46,7 @@ Then set as `az_modalTransition` to nessesary view just before presenting it
 
 ```swift
 override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-  segue.destination.az_modalTransition = FashionTransition()
+  segue.destination.customModalTransition = FashionTransition()
 }
 ```
 
@@ -81,8 +81,8 @@ func performTransition(interactive: Bool) {
 As you may have guessed, you have different properties. The main ones:
 
 - `duration` — transition duration
-- `presentingViewController` — the presenting view controller
-- `presentedViewController` — view controller that is going to be presented
+- `presentingViewController` — the presenting view controller (bottom one)
+- `presentedViewController` — view controller that is going to be presented (top one)
 
 You can animate them as you want.
 
@@ -92,11 +92,16 @@ In this case animation will be:
 
 ![Animation code example](imgs/animation_code_example.gif)
 
+## UIModalPresentationStyle
+
+Of course sometimes you want to use diffenret modal presentation styles (for example `overCurrentContext`), in this case you can call `setCustomModalTransition(customModalTransition: CustomModalTransition, inPresentationStyle: UIModalPresentationStyle)` of UIViewController instead of setting `customModalTransition` directly.
+
 ## More
 
 You have different properties and methods to help you:
 
 - `performDismissingTransition(interactive: Bool)` to implement custom transition animation when dismissing
+- `fromViewController`/`toViewController` in term of Apple transition. They are reversed in presenting and dismissing transitions.
 - `transitionContainerView` view where the transition takes place (`resentingViewController.view` and `presentedViewController.view` located on inside `transitionContainerView`), so you can add your custom views here to make animation more interesting (see `iOS Example`)
 - Some methods for interactive animations (example will be added be soon)
 - Some method to work with orientation changing things (example will be added be soon)
