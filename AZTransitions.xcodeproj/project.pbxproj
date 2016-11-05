@@ -14,7 +14,7 @@
 		92DE87D41DCA56DC0003D2AB /* AZTransitions.h in Headers */ = {isa = PBXBuildFile; fileRef = 92DE87D31DCA56DC0003D2AB /* AZTransitions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		92DE87D81DCA56E40003D2AB /* CustomModalTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DE87D71DCA56E40003D2AB /* CustomModalTransition.swift */; };
 		92DE87DA1DCA57D60003D2AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92DE87D91DCA57D60003D2AB /* Main.storyboard */; };
-		92DE87DD1DCA58370003D2AB /* FirstController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DE87DB1DCA58370003D2AB /* FirstController.swift */; };
+		92DE87DD1DCA58370003D2AB /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DE87DB1DCA58370003D2AB /* FirstViewController.swift */; };
 		92DE87DE1DCA58370003D2AB /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DE87DC1DCA58370003D2AB /* SecondViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -40,7 +40,7 @@
 		92DE87D51DCA56E00003D2AB /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Source/Info.plist; sourceTree = "<group>"; };
 		92DE87D71DCA56E40003D2AB /* CustomModalTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomModalTransition.swift; path = Source/CustomModalTransition.swift; sourceTree = "<group>"; };
 		92DE87D91DCA57D60003D2AB /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		92DE87DB1DCA58370003D2AB /* FirstController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstController.swift; sourceTree = "<group>"; };
+		92DE87DB1DCA58370003D2AB /* FirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		92DE87DC1DCA58370003D2AB /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -84,7 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				92DE87BE1DCA54B50003D2AB /* AppDelegate.swift */,
-				92DE87DB1DCA58370003D2AB /* FirstController.swift */,
+				92DE87DB1DCA58370003D2AB /* FirstViewController.swift */,
 				92DE87DC1DCA58370003D2AB /* SecondViewController.swift */,
 				92DE87D01DCA54C80003D2AB /* FashionTransition.swift */,
 				92DE87D91DCA57D60003D2AB /* Main.storyboard */,
@@ -230,7 +230,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				92DE87DD1DCA58370003D2AB /* FirstController.swift in Sources */,
+				92DE87DD1DCA58370003D2AB /* FirstViewController.swift in Sources */,
 				92DE87D11DCA54C80003D2AB /* FashionTransition.swift in Sources */,
 				92DE87DE1DCA58370003D2AB /* SecondViewController.swift in Sources */,
 				92DE87BF1DCA54B50003D2AB /* AppDelegate.swift in Sources */,

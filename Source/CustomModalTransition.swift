@@ -160,7 +160,7 @@ open class CustomModalTransition: NSObject {
       
       presentingViewController.view.frame = self.transitionContext.finalFrame(for: presentingViewController)
     } else {
-      transitionContainerView.addSubview(presentedViewController.view)
+      transitionContainerView.addSubview(presentingViewController.view)
       
       self.initialTransform = presentingViewController.view.transform
       self.finalTransform = presentedViewController.view.transform
@@ -196,6 +196,8 @@ extension CustomModalTransition: UIViewControllerTransitioningDelegate {
   
   public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
     
+    self.addFinalSetupToDismissedViewController(dismissed: dismissed)
+    
     // If subclass don't implementing dismissing protocol
     if !self.responds(to: #selector(CustomModalTransitionType.performDismissingTransition(interactive:))) {
       return nil
@@ -208,6 +210,23 @@ extension CustomModalTransition: UIViewControllerTransitioningDelegate {
     self.isDismissing = true
     
     return self
+  }
+  
+  // http://openradar.appspot.com/radar?id=5320103646199808
+  private func addFinalSetupToDismissedViewController(dismissed: UIViewController) {
+    if dismissed.modalPresentationStyle == .fullScreen || dismissed.modalPresentationStyle == .currentContext {
+      return
+    }
+    
+    // Adding to main thread queue, becase when this method get called `transitionCoordinator` is nil
+    OperationQueue.main.addOperation {
+      dismissed.transitionCoordinator?.animate(alongsideTransition: nil, completion: { (context) in
+        if !context.isCancelled {
+          let toViewController = context.viewController(forKey: UITransitionContextViewControllerKey.to)
+          UIApplication.shared.keyWindow?.addSubview(toViewController!.view)
+        }
+      })
+    }
   }
   
   public func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
@@ -255,13 +274,17 @@ public extension UIViewController {
       self.transitioningDelegate = newValue
       
       if let transition = newValue {
-        // FIXME: - Play with it
         self.modalPresentationStyle = .fullScreen
         transition.owningController = self
       }
       
       objc_setAssociatedObject(self, &associatedObjectHandle, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
     }
+  }
+  
+  public func setCustomModalTransition(az_modalTransition: CustomModalTransition, inPresentationStyle: UIModalPresentationStyle) {
+    self.az_modalTransition = az_modalTransition
+    self.modalPresentationStyle = inPresentationStyle
   }
 }
 
