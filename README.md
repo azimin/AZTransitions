@@ -92,10 +92,15 @@ In this case animation will be:
 
 ![Animation code example](imgs/animation_code_example.gif)
 
+## UIModalPresentationStyle
+
+Of course sometimes you want to use diffenret modal presentation styles (for example `overCurrentContext`), in this case you can call `setCustomModalTransition(az_modalTransition: CustomModalTransition, inPresentationStyle: UIModalPresentationStyle)` of UIViewController instead of setting `az_modalTransition` directly.
+
 ## More
 
 You have different properties and methods to help you:
 
+- `performDismissingTransition(interactive: Bool)` to implement custom transition animation when dismissing
 - `performDismissingTransition(interactive: Bool)` to implement custom transition animation when dismissing
 - `transitionContainerView` view where the transition takes place (`resentingViewController.view` and `presentedViewController.view` located on inside `transitionContainerView`), so you can add your custom views here to make animation more interesting (see `iOS Example`)
 - Some methods for interactive animations (example will be added be soon)
