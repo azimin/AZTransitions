@@ -53,8 +53,8 @@ open class CustomModalTransition: NSObject {
   
   // MARK: - Transition Parameters
   
-  public fileprivate(set) var transitionContext: UIViewControllerContextTransitioning!
-  public fileprivate(set) var transitionContainerView: UIView!
+  public fileprivate(set) weak var transitionContext: UIViewControllerContextTransitioning!
+  public fileprivate(set) weak var transitionContainerView: UIView!
   public fileprivate(set) var isPresenting: Bool = false
   public fileprivate(set) var isInteractive: Bool = false
   
@@ -62,12 +62,12 @@ open class CustomModalTransition: NSObject {
   // You can choose any pair
   
   // Presented/preseting style view controllees
-  public fileprivate(set) var presentedViewController: UIViewController!
-  public fileprivate(set) var presentingViewController: UIViewController!
+  public fileprivate(set) weak var presentedViewController: UIViewController!
+  public fileprivate(set) weak var presentingViewController: UIViewController!
   
   // Apple style view controllers
-  public fileprivate(set) var fromViewController: UIViewController!
-  public fileprivate(set) var toViewController: UIViewController!
+  public fileprivate(set) weak var fromViewController: UIViewController!
+  public fileprivate(set) weak var toViewController: UIViewController!
   
   public func viewControllerFor(type: TransitionViewControllerType) -> UIViewController {
     switch type {
@@ -120,6 +120,7 @@ open class CustomModalTransition: NSObject {
   }
   
   public func cancelInteractiveTransition() {
+    // http://openradar.appspot.com/14675246
     interactionController.completionSpeed = 0.999 // http://stackoverflow.com/a/22968139/188461
     interactionController.cancel()
     
@@ -183,7 +184,7 @@ open class CustomModalTransition: NSObject {
   // MARK: - Private
   
   fileprivate var interactionController: UIPercentDrivenInteractiveTransition!
-  fileprivate var owningController: UIViewController!
+  fileprivate weak var owningController: UIViewController!
 }
 
 // MARK: - UIViewControllerTransitioningDelegate
