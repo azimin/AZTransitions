@@ -55,7 +55,7 @@ or
 ```swift
 func show() {
   let viewController = UIViewController()
-  viewController.az_modalTransition = FashionTransition()
+  viewController.customModalTransition = FashionTransition()
   self.present(viewController, animated: true, completion: nil)
 }
 ```
