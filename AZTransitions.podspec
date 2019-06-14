@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "AZTransitions"
-  s.version      = "0.24"
+  s.version      = "0.25"
   s.summary      = "Framework that helps you to work with custom modal transtions."
   s.description  = <<-DESC
                     With this framework can easily work with custom modal transitions. CustomModalTransition class provides you with all nesessary API, so you should only think about aniamtions.
@@ -15,5 +15,5 @@ Pod::Spec.new do |s|
     :tag => s.version
   }
   s.source_files  = 'Source/*.swift'
-  s.pod_target_xcconfig = { 'SWIFT_VERSION' => '3' }
+  s.pod_target_xcconfig = { 'SWIFT_VERSION' => '5' }
 end
