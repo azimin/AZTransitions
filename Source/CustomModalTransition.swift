@@ -280,7 +280,7 @@ extension CustomModalTransition: UIViewControllerAnimatedTransitioning {
 private var associatedObjectHandle: UInt8 = 0
 
 public extension UIViewController {
-  public var customModalTransition: CustomModalTransition? {
+    var customModalTransition: CustomModalTransition? {
     get {
       return objc_getAssociatedObject(self, &associatedObjectHandle) as? CustomModalTransition
     }
@@ -299,7 +299,7 @@ public extension UIViewController {
     }
   }
   
-  public func setCustomModalTransition(customModalTransition: CustomModalTransition, inPresentationStyle: UIModalPresentationStyle) {
+    func setCustomModalTransition(customModalTransition: CustomModalTransition, inPresentationStyle: UIModalPresentationStyle) {
     self.customModalTransition = customModalTransition
     self.modalPresentationStyle = inPresentationStyle
   }

@@ -24,11 +24,11 @@ final class AlphaByStepTransition: CustomModalTransition {
   private func perfromAnimation() {
     let halfDuration = duration / 2
     
-    transitionContainerView.bringSubview(toFront: toViewController.view)
+    transitionContainerView.bringSubviewToFront(toViewController.view)
     
     toViewController.view.alpha = 0.0
     
-    UIView.animateKeyframes(withDuration: duration, delay: 0, options: UIViewKeyframeAnimationOptions.allowUserInteraction, animations: {
+    UIView.animateKeyframes(withDuration: duration, delay: 0, options: .allowUserInteraction, animations: {
       UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: halfDuration, animations: {
         self.fromViewController.view.alpha = 0.5
       })
