@@ -1,6 +1,7 @@
 # AZTransitions
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/AZTransitions.svg)](https://img.shields.io/cocoapods/v/AZTransitions.svg)
 [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![SPM Compatible](https://img.shields.io/badge/spm-compatible-4BC51D.svg?style=flat)](https://github.com/apple/swift-package-manager)
 [![Platform](https://img.shields.io/cocoapods/p/AZTransitions.svg?style=flat)](http://cocoadocs.org/docsets/AZTransitions)
 [![Twitter](https://img.shields.io/badge/twitter-@ziminalex-blue.svg?style=flat)](http://twitter.com/ziminalex)
 ![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)
@@ -23,6 +24,12 @@ pod 'AZTransitions'
 - or add the following to your [`Cartfile`](https://github.com/Carthage/Carthage) and run `carthage update`
 ```
 github "azimin/AZTransitions"
+```
+- if you are using [`Swift Package Manager`](https://github.com/apple/swift-package-manager) just add it to the `dependencies` value of your `Package.swift`
+```swift
+dependencies: [
+    .package(url: "https://github.com/azimin/AZTransitions.git", .upToNextMajor(from: "0.26.0"))
+]
 ```
 - or clone as a git submodule,
 
